@@ -1,0 +1,12 @@
+name: dartmonitor
+
+environment:
+  sdk: '>=2.6.0 <3.0.0'
+
+dependencies:
+  args: ^1.5.0
+  watcher: ^0.9.7+13
+  colorize: any
+
+executables:
+  dartmoniitor: main

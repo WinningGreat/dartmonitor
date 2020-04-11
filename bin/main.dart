@@ -8,7 +8,8 @@ import 'package:colorize/colorize.dart';
 const dir = 'dir';
 List<String> allFilePaths = [];
 StreamSubscription _watcherSub;
-StreamSubscription _processSub;
+StreamSubscription _processStdOut;
+StreamSubscription _processStdErr;
 ArgResults argResults;
 String dirString;
 Process process;
@@ -38,13 +39,16 @@ void main(List<String> arguments) {
 
  void start()async{
    process = await Process.start('dart', [p.absolute(p.dirname(Platform.script.path),'bin/main.dart')],);
-    _processSub = process.stdout
+    _processStdOut = process.stdout
         .transform(utf8.decoder)
+        .listen((data) { print(data); });
+    _processStdErr = process.stderr
+                  .transform(utf8.decoder)
         .listen((data) { print(data); });
  }
 
  void close(){
-  _processSub.cancel();
+  _processStdOut.cancel();
   process.kill();
 
  }

@@ -49,6 +49,8 @@ void main(List<String> arguments) {
 
  void close(){
   _processStdOut.cancel();
+  _processStdErr.cancel();
+  _watcherSub.cancel();
   process.kill();
 
  }
@@ -66,11 +68,11 @@ void main(List<String> arguments) {
       await for (var file in lister) {
         files.add(file.path);
       }
-      var newFiles = allFilePaths
-          .where((String element) =>
-              !files.contains(element) &&
-              p.extension(element) != '.dart')
-          .toList();
+      // var newFiles = allFilePaths
+      //     .where((String element) =>
+      //         !files.contains(element) &&
+      //         p.extension(element) != '.dart')
+      //     .toList();
       // if (newFiles.isNotEmpty) {
       //   restart();
       // }

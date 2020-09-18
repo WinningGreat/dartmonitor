@@ -3,43 +3,43 @@
   "packages": [
     {
       "name": "args",
-      "rootUri": "file:///Users/user/.pub-cache/hosted/pub.dartlang.org/args-1.5.3",
+      "rootUri": "file:///Users/winninggreat/.pub-cache/hosted/pub.dartlang.org/args-1.5.3",
       "packageUri": "lib/",
       "languageVersion": "2.3"
     },
     {
       "name": "async",
-      "rootUri": "file:///Users/user/.pub-cache/hosted/pub.dartlang.org/async-2.4.0",
+      "rootUri": "file:///Users/winninggreat/.pub-cache/hosted/pub.dartlang.org/async-2.4.0",
       "packageUri": "lib/",
       "languageVersion": "2.0"
     },
     {
       "name": "collection",
-      "rootUri": "file:///Users/user/.pub-cache/hosted/pub.dartlang.org/collection-1.14.12",
+      "rootUri": "file:///Users/winninggreat/.pub-cache/hosted/pub.dartlang.org/collection-1.14.12",
       "packageUri": "lib/",
       "languageVersion": "2.0"
     },
     {
       "name": "colorize",
-      "rootUri": "file:///Users/user/.pub-cache/hosted/pub.dartlang.org/colorize-2.0.0",
+      "rootUri": "file:///Users/winninggreat/.pub-cache/hosted/pub.dartlang.org/colorize-2.0.0",
       "packageUri": "lib/",
       "languageVersion": "2.0"
     },
     {
       "name": "path",
-      "rootUri": "file:///Users/user/.pub-cache/hosted/pub.dartlang.org/path-1.6.4",
+      "rootUri": "file:///Users/winninggreat/.pub-cache/hosted/pub.dartlang.org/path-1.6.4",
       "packageUri": "lib/",
       "languageVersion": "2.0"
     },
     {
       "name": "pedantic",
-      "rootUri": "file:///Users/user/.pub-cache/hosted/pub.dartlang.org/pedantic-1.9.0",
+      "rootUri": "file:///Users/winninggreat/.pub-cache/hosted/pub.dartlang.org/pedantic-1.9.0",
       "packageUri": "lib/",
       "languageVersion": "2.1"
     },
     {
       "name": "watcher",
-      "rootUri": "file:///Users/user/.pub-cache/hosted/pub.dartlang.org/watcher-0.9.7+13",
+      "rootUri": "file:///Users/winninggreat/.pub-cache/hosted/pub.dartlang.org/watcher-0.9.7+13",
       "packageUri": "lib/",
       "languageVersion": "2.0"
     },
@@ -47,10 +47,10 @@
       "name": "dartmonitor",
       "rootUri": "../",
       "packageUri": "lib/",
-      "languageVersion": "2.6"
+      "languageVersion": "2.8"
     }
   ],
-  "generated": "2020-03-06T13:32:31.804810Z",
+  "generated": "2020-08-17T00:54:54.274281Z",
   "generator": "pub",
-  "generatorVersion": "2.8.0-dev.5.0.flutter-fc3af737c7"
+  "generatorVersion": "2.9.1"
 }

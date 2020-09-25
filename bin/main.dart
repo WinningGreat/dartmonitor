@@ -8,7 +8,8 @@ import 'package:colorize/colorize.dart';
 const dir = 'dir';
 List<String> allFilePaths = [];
 StreamSubscription _watcherSub;
-StreamSubscription _processSub;
+StreamSubscription _processStdOut;
+StreamSubscription _processStdErr;
 ArgResults argResults;
 String dirString;
 Process process;
@@ -38,13 +39,18 @@ void main(List<String> arguments) {
 
  void start()async{
    process = await Process.start('dart', [p.absolute(p.dirname(Platform.script.path),'bin/main.dart')],);
-    _processSub = process.stdout
+    _processStdOut = process.stdout
         .transform(utf8.decoder)
+        .listen((data) { print(data); });
+    _processStdErr = process.stderr
+                  .transform(utf8.decoder)
         .listen((data) { print(data); });
  }
 
  void close(){
-  _processSub.cancel();
+  _processStdOut.cancel();
+  _processStdErr.cancel();
+  _watcherSub.cancel();
   process.kill();
 
  }
@@ -52,34 +58,20 @@ void main(List<String> arguments) {
  Future<void> setUpWatcher() async {
      color('Listening for File Changes',front: Styles.LIGHT_BLUE,isBold: true,isItalic: true);
     var absolutePath = p.absolute(p.dirname(Platform.script.path));
+    var excludePathList = [];
+    try{
+      excludePathList = json.decode(File('$absolutePath/dartmonitor.config.json').readAsStringSync())['exclude'];
+    } catch(e){
+      print('Could not find a dartmonitor.config.json file in your root path, skipping...');
+    }
+    print(excludePathList);
+    
     // print(absolutePath);
     var watcher = DirectoryWatcher(absolutePath);
     _watcherSub = watcher.events.listen((WatchEvent event) async {
-      // stdout.write('${event.type}\n');
-      var dir = Directory(absolutePath);
-      var files = <String>[];
-      var lister = dir.list(recursive: true);
-      await for (var file in lister) {
-        files.add(file.path);
+      if (excludePathList.firstWhere((element) => event.path.contains(element),orElse: ()=>null)!=null){
+        return;
       }
-      var newFiles = allFilePaths
-          .where((String element) =>
-              !files.contains(element) &&
-              p.extension(element) != '.dart')
-          .toList();
-      // if (newFiles.isNotEmpty) {
-      //   restart();
-      // }
-      // if (event.type == ChangeType.MODIFY) {
-      //   if (newFiles.isEmpty) restart();
-      // }
-      // if (event.type == ChangeType.REMOVE) restart();
-      // if (event.type == ChangeType.ADD) {
-      //   if (newFiles.isEmpty) restart();
-      // }
       restart();
-      allFilePaths = files;
     });
-
-    // });
   }

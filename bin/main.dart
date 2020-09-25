@@ -61,9 +61,8 @@ void main(List<String> arguments) {
     var excludePathList = [];
     try{
       excludePathList = json.decode(File('$absolutePath/dartmonitor.config.json').readAsStringSync())['exclude'];
-    } catch(e,s){
-      print(e);
-      print(s);
+    } catch(e){
+      print('Could not find a dartmonitor.config.json file in your root path, skipping...');
     }
     print(excludePathList);
     

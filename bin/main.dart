@@ -25,7 +25,6 @@ void main(List<String> arguments) {
   argResults = parser.parse(arguments);
   print(argResults.rest);
   start();
-  setUpWatcher();
 
 }
 
@@ -38,13 +37,14 @@ void main(List<String> arguments) {
  }
 
  void start()async{
+   setUpWatcher();
    process = await Process.start('dart', [p.absolute(p.dirname(Platform.script.path),'bin/main.dart')],);
     _processStdOut = process.stdout
         .transform(utf8.decoder)
         .listen((data) { print(data); });
     _processStdErr = process.stderr
                   .transform(utf8.decoder)
-        .listen((data) { print(data); });
+        .listen((data) { print(data); });  
  }
 
  void close(){
